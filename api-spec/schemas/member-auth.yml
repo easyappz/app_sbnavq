@@ -1,0 +1,50 @@
+MemberRegisterRequest:
+  type: object
+  description: 'Данные для регистрации нового пользователя.'
+  required:
+    - username
+    - password
+  properties:
+    username:
+      type: string
+      description: 'Желаемое имя пользователя.'
+      example: 'novyy_polzovatel'
+    password:
+      type: string
+      format: password
+      description: 'Пароль пользователя.'
+      example: 'SilnyyParol123'
+  additionalProperties: false
+
+MemberLoginRequest:
+  type: object
+  description: 'Данные для входа пользователя.'
+  required:
+    - username
+    - password
+  properties:
+    username:
+      type: string
+      description: 'Имя пользователя.'
+      example: 'novyy_polzovatel'
+    password:
+      type: string
+      format: password
+      description: 'Пароль пользователя.'
+      example: 'SilnyyParol123'
+  additionalProperties: false
+
+AuthResponse:
+  type: object
+  description: 'Ответ с данными пользователя и токеном авторизации.'
+  required:
+    - member
+    - token
+  properties:
+    member:
+      $ref: './member.yml#/Member'
+    token:
+      type: string
+      description: 'Токен авторизации.'
+      example: 'd41d8cd98f00b204e9800998ecf8427e'
+  additionalProperties: false

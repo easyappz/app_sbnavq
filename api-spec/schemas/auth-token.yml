@@ -1,0 +1,11 @@
+AuthToken:
+  type: object
+  description: 'Объект с токеном авторизации.'
+  required:
+    - token
+  properties:
+    token:
+      type: string
+      description: 'Токен авторизации.'
+      example: 'd41d8cd98f00b204e9800998ecf8427e'
+  additionalProperties: false

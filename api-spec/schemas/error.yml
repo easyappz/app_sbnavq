@@ -1,0 +1,27 @@
+Error:
+  type: object
+  description: 'Стандартная структура ошибки API.'
+  required:
+    - detail
+  properties:
+    detail:
+      type: string
+      description: 'Сообщение об ошибке.'
+      example: 'Неверные учетные данные.'
+    code:
+      type: string
+      nullable: true
+      description: 'Машиночитаемый код ошибки, если доступен.'
+      example: 'invalid_credentials'
+    fields:
+      type: object
+      nullable: true
+      description: 'Ошибки по отдельным полям при валидации.'
+      additionalProperties:
+        type: array
+        items:
+          type: string
+      example:
+        username:
+          - 'Пользователь с таким именем уже существует.'
+  additionalProperties: false

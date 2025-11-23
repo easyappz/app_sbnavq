@@ -1,0 +1,57 @@
+chat_messages:
+  get:
+    operationId: chat_messages_list
+    tags:
+      - chat
+    summary: 'Получить список сообщений чата'
+    description: 'Возвращает список сообщений из общего группового чата.'
+    security:
+      - TokenAuth: []
+    responses:
+      '200':
+        description: 'Список сообщений группового чата.'
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '../schemas/chat-message.yml#/ChatMessage'
+      '401':
+        description: 'Пользователь не авторизован.'
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/error.yml#/Error'
+  post:
+    operationId: chat_messages_create
+    tags:
+      - chat
+    summary: 'Отправить сообщение в чат'
+    description: 'Создает новое сообщение в общем групповом чате.'
+    security:
+      - TokenAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/chat-message.yml#/ChatMessageCreate'
+    responses:
+      '201':
+        description: 'Сообщение успешно создано.'
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/chat-message.yml#/ChatMessage'
+      '400':
+        description: 'Ошибка валидации данных сообщения.'
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/error.yml#/Error'
+      '401':
+        description: 'Пользователь не авторизован.'
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/error.yml#/Error'

@@ -1,0 +1,55 @@
+profile:
+  get:
+    operationId: profile_get
+    tags:
+      - profile
+    summary: 'Получить профиль текущего пользователя'
+    description: 'Возвращает информацию о текущем аутентифицированном пользователе.'
+    security:
+      - TokenAuth: []
+    responses:
+      '200':
+        description: 'Профиль текущего пользователя.'
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/member.yml#/Member'
+      '401':
+        description: 'Пользователь не авторизован.'
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/error.yml#/Error'
+  put:
+    operationId: profile_update
+    tags:
+      - profile
+    summary: 'Обновить профиль текущего пользователя'
+    description: 'Обновляет данные профиля текущего аутентифицированного пользователя.'
+    security:
+      - TokenAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/member.yml#/MemberUpdateRequest'
+    responses:
+      '200':
+        description: 'Обновленный профиль пользователя.'
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/member.yml#/Member'
+      '400':
+        description: 'Ошибка валидации при обновлении профиля.'
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/error.yml#/Error'
+      '401':
+        description: 'Пользователь не авторизован.'
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/error.yml#/Error'

@@ -1,0 +1,38 @@
+ChatMessage:
+  type: object
+  description: 'Сообщение в групповом чате.'
+  required:
+    - id
+    - text
+    - created_at
+    - author
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: 'Идентификатор сообщения.'
+      example: 10
+    text:
+      type: string
+      description: 'Текст сообщения.'
+      example: 'Всем привет!'
+    created_at:
+      type: string
+      format: date-time
+      description: 'Дата и время отправки сообщения.'
+      example: '2025-01-01T12:34:56Z'
+    author:
+      $ref: './member.yml#/Member'
+  additionalProperties: false
+
+ChatMessageCreate:
+  type: object
+  description: 'Данные для отправки нового сообщения в чат.'
+  required:
+    - text
+  properties:
+    text:
+      type: string
+      description: 'Текст отправляемого сообщения.'
+      example: 'Как дела?'
+  additionalProperties: false

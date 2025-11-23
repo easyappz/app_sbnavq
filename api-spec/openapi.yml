@@ -1,0 +1,46 @@
+openapi: 3.1.0
+info:
+  title: Chat API
+  version: '1.0.0'
+  description: >-
+    Простое API для регистрации пользователей, авторизации и группового чата.
+servers:
+  - url: /api
+paths:
+  /auth/register:
+    $ref: './paths/auth.yml#/auth_register'
+  /auth/login:
+    $ref: './paths/auth.yml#/auth_login'
+  /auth/logout:
+    $ref: './paths/auth.yml#/auth_logout'
+  /profile:
+    $ref: './paths/profile.yml#/profile'
+  /chat/messages:
+    $ref: './paths/chat.yml#/chat_messages'
+components:
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Токен авторизации в формате "Token <ключ>".
+  schemas:
+    Member:
+      $ref: './schemas/member.yml#/Member'
+    MemberUpdateRequest:
+      $ref: './schemas/member.yml#/MemberUpdateRequest'
+    MemberRegisterRequest:
+      $ref: './schemas/member-auth.yml#/MemberRegisterRequest'
+    MemberLoginRequest:
+      $ref: './schemas/member-auth.yml#/MemberLoginRequest'
+    AuthResponse:
+      $ref: './schemas/member-auth.yml#/AuthResponse'
+    ChatMessage:
+      $ref: './schemas/chat-message.yml#/ChatMessage'
+    ChatMessageCreate:
+      $ref: './schemas/chat-message.yml#/ChatMessageCreate'
+    AuthToken:
+      $ref: './schemas/auth-token.yml#/AuthToken'
+    Error:
+      $ref: './schemas/error.yml#/Error'
